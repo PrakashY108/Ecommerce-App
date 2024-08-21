@@ -19,7 +19,7 @@ export default function Footer() {
         <Image style={styles.icons} source={selected != 0 ? require("../assets/home.png") : require("../assets/home_fill.png")} />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => setselected(1)}>
-        <Image style={styles.icons} source={selected != 1 ? require("../assets/orders.png") : require("../assets/orders.png")} />
+        <Image style={styles.icons} source={selected != 1 ? require("../assets/orders.png") : require("../assets/orders_fill.png")} />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => setselected(2)}>
         <Image style={styles.icons} source={selected != 2 ? require("../assets/notification.png") : require("../assets/notification_fill.png")} />

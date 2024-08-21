@@ -3,11 +3,11 @@ import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 
-export default function Header({ leftIcon, title, rightIcon }) {
+export default function Header({ leftIcon, title, rightIcon,onpress }) {
     const navigation = useNavigation();
     return (
         <View style={styles.headercontainer}>
-            <TouchableOpacity onPress={()=>navigation.openDrawer()}>
+            <TouchableOpacity onPress={()=>onpress()}>
                 <Image style={styles.headerLeftImg} source={leftIcon} />
             </TouchableOpacity>
             <Text style={styles.headertitle}>{title}</Text>
