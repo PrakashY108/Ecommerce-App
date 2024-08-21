@@ -3,8 +3,11 @@ import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import { addproducts } from '../redux/slices/ProductsSlice';
 
 export default function Home() {
+    const dispatch = useDispatch()
     const navigation = useNavigation();
     const [products, setProducts] = useState([]);
 
@@ -12,16 +15,16 @@ export default function Home() {
         fetch("https://fakestoreapi.com/products")
             .then((res) => {
                 if (!res.ok) {
-                    console.log("Error while fetching");
+                    console.log("Error while fetching ");
                 } else {
                     return res.json()
                 }
             })
             .then(result => {
                 setProducts(result)
-                console.log(result)
+                dispatch(addproducts(result))
             })
-            .catch(err => console.log("Error while fetching", err)
+            .catch(err => console.log("Error while fetching :", err.message)
             )
     }
     useEffect(() => {

@@ -4,6 +4,7 @@ import Orders from '../screens/Orders'
 import Notification from '../screens/Notification'
 import Profile from '../screens/Profile'
 import Home from '../screens/Home'
+import Wishlist from '../screens/Wishlist'
 
 export default function Footer() {
   const [selected, setselected] = useState(0)
@@ -12,8 +13,9 @@ export default function Footer() {
     <>
    {selected==0?<Home/>:null}
    {selected==1?<Orders/>:null}
-   {selected==2?<Notification/>:null}
-   {selected==3?<Profile/>:null}
+   {selected==2?<Wishlist/>:null}
+   {selected==3?<Notification/>:null}
+   {selected==4?<Profile/>:null}
     <View style={styles.bottomcontainer}>
       <TouchableOpacity onPress={() => setselected(0)}>
         <Image style={styles.icons} source={selected != 0 ? require("../assets/home.png") : require("../assets/home_fill.png")} />
@@ -22,10 +24,13 @@ export default function Footer() {
         <Image style={styles.icons} source={selected != 1 ? require("../assets/orders.png") : require("../assets/orders_fill.png")} />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => setselected(2)}>
-        <Image style={styles.icons} source={selected != 2 ? require("../assets/notification.png") : require("../assets/notification_fill.png")} />
+        <Image style={styles.icons} source={selected != 2 ? require("../assets/heart.png") : require("../assets/heart_blackfill.png")} />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => setselected(3)}>
-        <Image style={styles.icons} source={selected != 3 ? require("../assets/user.png") : require("../assets/user_fill.png")} />
+        <Image style={styles.icons} source={selected != 3 ? require("../assets/notification.png") : require("../assets/notification_fill.png")} />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => setselected(4)}>
+        <Image style={styles.icons} source={selected != 4 ? require("../assets/user.png") : require("../assets/user_fill.png")} />
       </TouchableOpacity>
     </View>
     </>
