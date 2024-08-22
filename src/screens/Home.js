@@ -30,43 +30,10 @@ export default function Home() {
     useEffect(() => {
         getProducts();
     }, [])
-    const data = [{
-        id: 1,
-        title: "hello i am title"
-    }, {
-        id: 2,
-        title: "hello i am title2"
-    },
-    {
-        id: 3,
-        title: "hello i am title3"
-    },
-    {
-        id: 4,
-        title: "hello i am title3"
-    },
-    {
-        id: 5,
-        title: "hello i am title3"
-    },
-    {
-        id: 6,
-        title: "hello i am title3"
-    },
-    {
-        id: 7,
-        title: "hello i am title3"
-    },
-    {
-        id: 8,
-        title: "hello i am title3"
-    },
-
-    ]
 
     return (
         <>
-            <Header leftIcon={require("../assets/menu.png")} onpress={navigation.openDrawer} title="Grocery app" rightIcon={require("../assets/cart.png")} />
+            <Header leftIcon={require("../assets/menu.png")} onpress={navigation.openDrawer} title="Shopping App" rightIcon={require("../assets/cart.png")} />
             <View>
                 <FlatList
                     data={products}

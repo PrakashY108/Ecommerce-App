@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import CustomButton from '../components/CustomButton';
 import { useDispatch } from 'react-redux';
 import { addToWishlist } from '../redux/slices/WishlistSlice';
+import { addToCart } from '../redux/slices/CartSlice';
 
 
 export default function ProductDetails() {
@@ -48,8 +49,7 @@ const dispatch= useDispatch()
     <View style={styles.btn}>
       <CustomButton title={"Buy now"} onclick={() => console.log("hi")
       } />
-      <CustomButton title={"Add to Cart"} onclick={() => console.log("hi")
-      } />
+      <CustomButton title={"Add to Cart"} onclick={()=>dispatch(addToCart(item))}/>
 
     </View>
   </>

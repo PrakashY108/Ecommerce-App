@@ -10,7 +10,7 @@ const AppNavigator = () => {
     return (<NavigationContainer>
         <Stack.Navigator>
             <Stack.Screen name="DrawerNavigator" component={DrawerNavigator} options={{ headerShown: false }} />
-            <Stack.Screen name="Carts" component={Carts}  />
+            <Stack.Screen name="Carts" component={Carts} options={{ headerShown: false }} />
             <Stack.Screen name="ProductDetails" component={ProductDetails}  options={{ headerShown: false }}/>
         </Stack.Navigator>
        
