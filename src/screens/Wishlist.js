@@ -16,18 +16,18 @@ export default function Wishlist() {
   const renderItem = ({ item }) => (
       <TouchableOpacity onPress={() => navigation.navigate("ProductDetails", { item })} style={styles.cards}>
         <Image style={styles.cardimg} source={{ uri: item.image }} />
-        <View style={{paddingRight:20,width:200}}>
+        <View style={{width:"60%"}}>
         <Text style={styles.cardtitle} >{item.title.substring(0,40)}...</Text>
         <Text style={styles.carddescription}>{item.description.substring(0,40)}...</Text>
-        </View>
         <Text style={[styles.carddescription, { color: "green", fontSize: 18 }]}>{`$ ${item.price}`}</Text>
+        </View>
       
       </TouchableOpacity>
      
     );
   return (
     <View>
-<Header leftIcon={require("../assets/back.png")} onpress={()=>navigation.goBack} title="WishList" rightIcon={require("../assets/cart.png")}/>
+<Header leftIcon={require("../assets/menu.png")} onpress={navigation.openDrawer} title="WishList" rightIcon={require("../assets/cart.png")}/>
       <FlatList
         data={wishlist}
         keyExtractor={(item) => item.id.toString()}
@@ -40,12 +40,11 @@ export default function Wishlist() {
 
 const styles = StyleSheet.create({
   cards: {
-    height: 100,
-    width: "40%",
+    height: 120,
+    width: "100%",
     backgroundColor: "white",
     borderColor: "white",
     borderWidth: 1,
-    margin: 5,
     top: 0,
     alignContent: "center",
     alignItems: "center",
@@ -54,17 +53,24 @@ const styles = StyleSheet.create({
 
   },
   cardimg: {
-    height: "50%",
-    width: "70%",
-    resizeMode: "contain"
+    height: "100%",
+    backgroundColor: "white",
+    width: "35%",
+    resizeMode: "contain",
+    borderWidth:.5,
+    borderColor:"black",
+    marginRight:10
   },
   cardtitle: {
     fontWeight: "900",
-    paddingTop: 10,
+    backgroundColor: "white",
+    paddingTop: 0,
     color: "black",
-    fontSize: 15
+    fontSize: 15,
+ 
   },
   carddescription: {
+    backgroundColor: "white",
     paddingBottom: 5,
 
   },

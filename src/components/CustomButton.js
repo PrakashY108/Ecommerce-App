@@ -1,10 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
-export default function CustomButton({title, onclick}) {
+
+
+export default function CustomButton({title, onpress}) {
     return (
-        <TouchableOpacity style ={styles.btn} onPress={onclick}>
+        <TouchableOpacity style ={styles.btn} onPress={() => onpress}>
             <Text>{title}</Text>
         </TouchableOpacity>
     )

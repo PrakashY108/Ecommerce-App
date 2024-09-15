@@ -6,10 +6,7 @@ import Footer from '../components/Footer'
 export default function Main() {
     return (
         <>
-            <View >
-               
-            </View>
-            <Footer />
+        <Footer />
         </>
     )
 }
