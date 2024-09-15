@@ -1,9 +1,10 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View ,ActivityIndicator, Modal } from 'react-native'
 import React, { useState } from 'react'
 import Header from '../components/Header'
 import { useNavigation } from '@react-navigation/native'
 import { TextInput } from 'react-native-gesture-handler'
 import  firestore from '@react-native-firebase/firestore'
+import Loader from '../components/Loader'
 
 export default function Signup() {
     const [userName, setUserName] = useState("")
@@ -11,6 +12,7 @@ export default function Signup() {
     const [confirmPassword, setConfirmPassword] = useState("")
     const [userPassword, setUserPassword] = useState("")
     const [isValid, setIsValid] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
     const navigation = useNavigation();
     const isvalid = () => {
         if (userName.length <= 3) {
@@ -32,16 +34,29 @@ export default function Signup() {
         return true;
     }
     const handleSignUp = () => {
+        setIsLoading(true);
+
         firestore()
-            .collection('Users')
-            .add({username:userName,password:userPassword,phonenumber:phonenumber})
-            .then(() => console.log('Account Created Sucessfully'))
-            .catch((error) => console.log(error))
-    }
+          .collection('Users')
+          .add({
+            username: userName,
+            password: userPassword,
+            phonenumber: phonenumber
+          })
+          .then(() => {
+            console.log('Account Created Successfully');
+            setIsLoading(false); // Set loading to false after the operation completes
+          })
+          .catch((error) => {
+            console.log('Error creating account:', error);
+            setIsLoading(false); // Stop loading even if there's an error
+          });}
+        
+   
     return (
         <View>
             <Header leftIcon={require("../assets/back.png")} onpress={navigation.goBack} title={"Sign Up"} />
-
+            {isLoading && <Loader message={"Creating account"} />}
             <View style={styles.container}>
                 <TextInput style={styles.input}
                     value={userName}

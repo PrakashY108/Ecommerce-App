@@ -5,20 +5,35 @@ import { useNavigation } from '@react-navigation/native'
 import { TextInput } from 'react-native-gesture-handler'
 import firestore from '@react-native-firebase/firestore';
 export default function Login() {
-    const [userName, setUserName] = useState(null)
+    const [username, setUserName] = useState(null)
     const [userPassword, setUserPassword] = useState(null)
     const navigation = useNavigation();
     const handleLogin = () => {
-        firestore().collection('Users').where('username',"==" ,userName).onSnapshot(documentSnapshot => {
-            console.log('User data: ', documentSnapshot._changes);
-        });
-    }
+        console.log("hii");
+        firestore()
+        .collection('Users')
+        .doc(username)
+        .get()
+        .then(documentSnapshot => {
+          console.log("hi");
+      
+          if (documentSnapshot.exists) {
+            // Access the document data
+            const userData = documentSnapshot
+            console.log('User data:', userData);
+          } else {
+            console.log('No such user found!');
+          }
+        })
+        .catch((err) => {
+          console.log('Error fetching user data:', err);
+        });}
     return (
         <View>
             <Header leftIcon={require("../assets/back.png")} onpress={navigation.goBack} title={"Login"} />
 
             <View style={styles.container}>
-                <TextInput style={styles.input} value={userName} onChangeText={(text) => setUserName(text)} placeholder='Enter Username' />
+                <TextInput style={styles.input} value={username} onChangeText={(text) => setUserName(text)} placeholder='Enter Username' />
                 <TextInput style={styles.input} value={userPassword} onChangeText={(text) => setUserPassword(text)} placeholder='Enter Password' />
                 <TouchableOpacity style={styles.btn} onPress={handleLogin}>
                     <Text>Login</Text>

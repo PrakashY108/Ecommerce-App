@@ -1,4 +1,4 @@
-import { StyleSheet, FlatList, View, TouchableOpacity, Image, Text } from 'react-native'
+import { StyleSheet, FlatList, View, TouchableOpacity, Image, Text, Button, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import Header from '../components/Header'
@@ -16,13 +16,14 @@ export default function Carts() {
     setAddedItem(data.data)
   }, [])
 
-  // const pricedata =addeditem.map((item)=>{
-  //   const totalprice = totalprice +item.price
-  //   settotalprice(totalprice)
+  const pricedata=()=>{addeditem.reduce((accumulator,currvalue)=>{
+   const total= accumulator + currvalue.price;
+   settotalprice(total);
    
-  // })
+  }),0}
   const renderItem = ({ item }) => {
     return (
+    
       <TouchableOpacity onPress={() => navigation.navigate("ProductDetails", { item })} style={styles.cards}>
         <Image style={styles.cardimg} source={{ uri: item.images[0] }} />
         <View style={{ width: "60%" }}>
@@ -32,24 +33,27 @@ export default function Carts() {
             <Text style={[styles.carddescription, { color: "green", fontSize: 18 }]}>{`$ ${item.price}`}</Text>
             <QuantityUpdate qty={item.qty} /></View>
         </View>
+        
       </TouchableOpacity>
 
     );
   }
 
   return (
+    <View style={{height:700}}>
     <View >
       <Header leftIcon={require("../assets/back.png")} onpress={navigation.goBack} title={"Cart "} />
       <FlatList data={addeditem}
         keyExtractor={item => item.id}
         renderItem={renderItem}
       />
-      <View style={styles.cartfooter}>
-        <View><Text style={styles.text}> Items :{items}</Text>
-        <Text style={styles.text}> Total Price :</Text></View>
-        <CustomButton title={"Check Out"}/>
-      </View>
     </View>
+    <View style={styles.cartfooter}>
+        <Button title='Calculate' onPress={()=>pricedata()}/>
+        <View><Text style={styles.text}> Items :{items}</Text>
+        <Text style={styles.text}> Total Price :{totalprice}</Text></View>
+        <CustomButton title={"Check Out"}/>
+      </View></View>
   )
 }
 
@@ -94,7 +98,8 @@ const styles = StyleSheet.create({
     width:'100%',
     backgroundColor:'lightblue',
     position:'absolute',
-    top:780,
+    bottom:-15,
+    zIndex:1,
     justifyContent:"space-evenly",
     flexDirection:'row',
     alignItems:"center"
@@ -104,6 +109,6 @@ const styles = StyleSheet.create({
     color:"black",
     fontWeight:"700",
     
-  }
+  },
 
 })

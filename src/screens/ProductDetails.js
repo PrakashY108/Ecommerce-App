@@ -18,15 +18,16 @@ export default function ProductDetails() {
   const dispatch = useDispatch();
 
   const checkUserStatus = async (item) => {
-    const accessToken = await AsyncStorage.getItem("accessToken");
-    if (!accessToken) {
-      console.log("Please Login First");
+    // const accessToken = await AsyncStorage.getItem("accessToken");
+    // if (!accessToken) {
+    //   console.log("Please Login First");
       
-      setIsModalVisible(true)
+    //   setIsModalVisible(true)
 
-    } else {
-      dispatch(addToCart(item));
-    }
+    // } else {
+    //   dispatch(addToCart(item));
+    // }
+    dispatch(addToCart(item));
   };
 
   const handleLoginModal=()=>{

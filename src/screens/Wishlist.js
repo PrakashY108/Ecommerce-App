@@ -10,12 +10,16 @@ export default function Wishlist() {
   const navigation = useNavigation()
   const [wishlist, setWishlist] = useState([])
 
+
   useEffect(() => {
     setWishlist(item.data || []);
   }, [item.data]);
   const renderItem = ({ item }) => (
+    
       <TouchableOpacity onPress={() => navigation.navigate("ProductDetails", { item })} style={styles.cards}>
-        <Image style={styles.cardimg} source={{ uri: item.image }} />
+   
+        
+        <Image style={styles.cardimg} source={{ uri: item.category.image }} />
         <View style={{width:"60%"}}>
         <Text style={styles.cardtitle} >{item.title.substring(0,40)}...</Text>
         <Text style={styles.carddescription}>{item.description.substring(0,40)}...</Text>

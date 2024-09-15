@@ -78,7 +78,7 @@ export default function Home() {
     return (
         <>
             <Header leftIcon={require("../assets/menu.png")} onpress={navigation.openDrawer} title="Shopping App" rightIcon={require("../assets/cart.png")} />
-            {isLoading && <Loading />}
+            {isLoading && <Loading message={"Please Wait fetching"}/>}
             
             {errorVisibilty ? Object.keys(errorMessage).length > 0 && displayError() : null}
             <View style={styles.container}>
