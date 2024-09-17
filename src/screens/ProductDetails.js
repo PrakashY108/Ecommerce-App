@@ -25,8 +25,7 @@ export default function ProductDetails() {
     //   setIsModalVisible(true)
 
     // } else {
-    //   dispatch(addToCart(item));
-    // }
+      dispatch(addToCart(item));
     dispatch(addToCart(item));
   };
 

@@ -9,20 +9,17 @@ export default function Login() {
     const [userPassword, setUserPassword] = useState(null)
     const navigation = useNavigation();
     const handleLogin = () => {
-        console.log("hii");
         firestore()
         .collection('Users')
-        .doc(username)
+        .doc('username')
         .get()
         .then(documentSnapshot => {
-          console.log("hi");
-      
           if (documentSnapshot.exists) {
             // Access the document data
             const userData = documentSnapshot
             console.log('User data:', userData);
           } else {
-            console.log('No such user found!');
+            console.log('No such user found!',documentSnapshot);
           }
         })
         .catch((err) => {
